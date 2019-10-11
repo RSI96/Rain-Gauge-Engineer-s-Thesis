@@ -1,12 +1,17 @@
 <template>
 <div>
-    aktualne pomiary
+    <app-chart></app-chart>
 </div>
 </template>
 
 <script>
+    import EChart from "../components/EChart";
+
     export default {
-        name: "Actual"
+        name: "Actual",
+        components: {
+            appChart: EChart
+        }
     }
 </script>
 

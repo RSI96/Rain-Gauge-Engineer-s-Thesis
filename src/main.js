@@ -6,6 +6,7 @@ import VueResource from 'vue-resource'
 //import './registerServiceWorker'
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "@/plugins/echarts";
 
 Vue.config.productionTip = false
 Vue.use(VueResource);
