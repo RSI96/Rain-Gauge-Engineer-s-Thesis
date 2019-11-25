@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import Previous from "./views/Previous";
+import History from "./views/History";
 import Actual from "./views/Actual";
 
 Vue.use(Router)
@@ -21,9 +21,9 @@ export default new Router({
       component: Actual
     },
     {
-      path: '/previous',
-      name: 'previous',
-      component: Previous
+      path: '/history',
+      name: 'history',
+      component: History
     }
   ]
 })

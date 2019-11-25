@@ -12,7 +12,7 @@
                         <router-link to="/actual" class="nav-link"><a>Actual</a></router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/previous" class="nav-link"><a>Previous</a></router-link>
+                        <router-link to="/history" class="nav-link"><a>History</a></router-link>
                     </li>
                 </ul>
                 <strong class="navbar-text navbar-right">Last measurement</strong>
