@@ -8,14 +8,13 @@
     export default {
         name: "HistoryChart",
         props: {
-            lastDayHours: Array,
-            lastDayValues: Array
+            day: Object
         },
         data() {
             return {
                 chartOptionsBar: {
                     xAxis: {
-                        data: this.lastDayHours
+                        data: this.day.hours
                     },
                     yAxis: {
                         type: 'value'
@@ -23,11 +22,11 @@
                     series: [
                         {
                             type: 'bar',
-                            data: this.lastDayValues
+                            data: this.day.values
                         }
                     ],
                     title: {
-                        text: 'Rain fell in mm/m^2',
+                        text: this.day.date + ' - Rain fell in mm/m^2',
                         x: 'center',
                         textStyle: {
                             fontSize: 18
