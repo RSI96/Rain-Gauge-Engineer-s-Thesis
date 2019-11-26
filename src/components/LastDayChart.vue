@@ -1,21 +1,20 @@
 <template>
-    <div>
+    <div class="col-sm-12 col-md-6 col-lg-6">
         <chart :options="chartOptionsBar"></chart>
     </div>
 </template>
 
 <script>
     export default {
-        name: "EChart",
+        name: "LastDayChart",
         props: {
-            lastDayHours: Array,
-            lastDayValues: Array
+            day: Object
         },
         data() {
             return {
                 chartOptionsBar: {
                     xAxis: {
-                        data: this.lastDayHours
+                        data: this.day.hours
                     },
                     yAxis: {
                         type: 'value'
@@ -23,11 +22,11 @@
                     series: [
                         {
                             type: 'bar',
-                            data: this.lastDayValues
+                            data: this.day.values
                         }
                     ],
                     title: {
-                        text: 'Rain fell in mm/m^2',
+                        text: 'Rain fell in mm/m^2 during last 24 hours',
                         x: 'center',
                         textStyle: {
                             fontSize: 18

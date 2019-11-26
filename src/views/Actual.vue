@@ -3,8 +3,7 @@
         <div class="row">
             <div class="col-sm">
                 <app-chart
-                        :lastDayHours="lastDayHours"
-                        :lastDayValues="lastDayValues"
+                        :day="lastDay[0]"
                 ></app-chart>
             </div>
             <div class="col-sm">
@@ -12,10 +11,11 @@
                         :lastHour="lastHour"
                 ></app-measurement>
             </div>
+            <div>
+                {{ lastDay}}
+            </div>
         </div>
-        <h1> {{ lastDayHours }}</h1>
-        <h1> {{ lastDayValues }}</h1>
-        <button @click="getLastDayHours">temp</button>
+
     </div>
 </template>
 
@@ -39,24 +39,12 @@
                 lastDayValues: []
             }
         },
-        methods: {
-            getLastDayHours() {
-                for(let key in this.lastDay) {
-                    if (this.lastDay.hasOwnProperty(key)) {
-                        this.lastDayHours[key] = this.lastDay[key].hour
-                        this.lastDayValues.push(this.lastDay[key].suma)
-                    }
-                }
-            },
-        },
+
         created() {
             axios.get("http://192.168.1.3:8080/lastHour")
                 .then(res => (this.lastHour = res.data[0]));
-            axios.get("http://192.168.1.3:8080/lastDay")
+            axios.get("http://192.168.1.3:8080/lastDayArrays")
                 .then(res => (this.lastDay = res.data));
-        },
-        mounted() {
-            this.getLastDayHours()
         }
     }
 </script>
