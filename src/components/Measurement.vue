@@ -3,7 +3,7 @@
     <div class="panel">
         <div class="panel-heading">
             <h2 class="panel-title">
-                Aktualny pomiar
+                    Aktualny pomiar
             </h2>
         </div>
         <div class="panel-body">
@@ -11,8 +11,10 @@
                 W ciągu ostatniej godziny opad wyniósł {{ lastHour.suma }} mm/m^2
             </h4>
             <h4>
-                Jest to równoznaczne z //np. lekkim opadem, swicha do porównywania wsadzić
+               W ciągu ostatnich 10 minut spadło {{ last10Minutes.suma }} mm/m^2 co daje wspłóczynnik równy {{ alpha }}
             </h4>
+            <div v-if="alpha <= 1" >Zwykły deszcz</div>
+            <div v-else-if="alpha > 1" >Silny deszcz</div>
         </div>
     </div>
 </div>
@@ -22,23 +24,29 @@
     export default {
         name: "Measurement",
         props: {
-            lastHour: Object
+            lastHour: Object,
+            last10Minutes: Object
+        },
+        computed: {
+            alpha() {
+                return this.last10Minutes.suma / Math.sqrt(10);
+            }
         }
     }
 </script>
 
 <style scoped>
     .panel {
-        background-color: #dddddd;
-        borde: 10px solid transparent;
+        background-color: #428bca;
+        border: 10px solid transparent;
+        border-radius: 5px;
     }
 
     .panel-body {
-        border: 10px solid transparent;
-
+        text-align: justify;
     }
 
     .panel-title {
-        text-indent: 10px;
+        text-align: center;
     }
 </style>

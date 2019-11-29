@@ -8,7 +8,7 @@
         ></app-chart>
         <div v-for="day in lastWeek"
              :key="day.date"
-             > {{ day.values }} {{ day.hours}}</div>
+             > {{ day.values }} {{ day.hours }}</div>
         </div>
     </div>
 </template>
@@ -28,7 +28,7 @@
             }
         },
         created() {
-            axios.get("http://192.168.1.3:8080/lastWeekArrays")
+            axios.get("http://10.129.11.171:8080/lastWeekArrays")
                 .then(res => (this.lastWeek = res.data))
         }
     }

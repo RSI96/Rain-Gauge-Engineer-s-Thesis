@@ -1,13 +1,12 @@
 <template>
-    <div class="col-sm-12 col-md-6 col-lg-6">
-        <chart :options="chartOptionsBar"></chart>
-        <button type="button" v-on:click="saveFile()">saveFile</button>
+    <div class="echarts">
+        <chart :options="chartOptionsBar"></chart >
     </div>
 </template>
 
 <script>
     export default {
-        name: "LastDayChart",
+        name: "IntervalChart",
         props: {
             day: Object
         },
@@ -25,11 +24,15 @@
                             type: 'bar',
                             data: this.day.values,
                             label: {
+                                // You can choose from 'normal' (always visible )
+                                // and 'emphasis' (only visible on stack hover)
                                 emphasis: {
+                                    // Enable the label
                                     show: true,
+                                    // Position it on top of the stack
                                     position: 'top',
                                     formatter: (data) => {
-                                        let alpha = data.value/Math.sqrt(60);
+                                        let alpha = data.value/Math.sqrt(15);
                                         if (alpha === 0)
                                             return alpha + 'Brak opadów';
                                         else if (alpha < 1)
@@ -50,7 +53,7 @@
                         }
                     ],
                     title: {
-                        text: 'Rain fell in mm/m^2 during last 24 hours',
+                        text: 'co 15 min',
                         x: 'center',
                         textStyle: {
                             fontSize: 18
@@ -64,5 +67,7 @@
 </script>
 
 <style scoped>
-
+    .echarts {
+        width: 100%;
+    }
 </style>

@@ -12,6 +12,9 @@
                         <router-link to="/actual" class="nav-link"><a>Actual</a></router-link>
                     </li>
                     <li class="nav-item">
+                        <router-link to="/dataAnalysis" class="nav-link"><a>Data Analysis</a></router-link>
+                    </li>
+                    <li class="nav-item">
                         <router-link to="/history" class="nav-link"><a>History</a></router-link>
                     </li>
                 </ul>

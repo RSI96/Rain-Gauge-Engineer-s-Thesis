@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import History from "./views/History";
 import Actual from "./views/Actual";
+import DataAnalysis from "./views/DataAnalysis";
 
 Vue.use(Router)
 
@@ -19,6 +20,11 @@ export default new Router({
       path: '/actual',
       name: 'actual',
       component: Actual
+    },
+    {
+      path: '/dataAnalysis',
+      name: 'dataAnalysis',
+      component: DataAnalysis
     },
     {
       path: '/history',
