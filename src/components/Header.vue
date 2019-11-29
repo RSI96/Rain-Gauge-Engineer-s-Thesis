@@ -18,7 +18,7 @@
                         <router-link to="/history" class="nav-link"><a>History</a></router-link>
                     </li>
                 </ul>
-                <strong class="navbar-text navbar-right">Last measurement</strong>
+                <strong class="navbar-text navbar-right">Godzine wstawić czy coś</strong>
             </div>
         </nav>
         <ul>

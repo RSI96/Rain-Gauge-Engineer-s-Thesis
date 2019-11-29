@@ -1,6 +1,10 @@
 <template>
+    <div>
     <div class="echarts">
-        <chart :options="chartOptionsBar"></chart >
+        <chart :options="chartOptionsBar"></chart>
+    </div>
+    <b-button block variant="outline-primary" v-on:click="saveFile()">Zapisz dane</b-button>
+    <br>
     </div>
 </template>
 
@@ -8,11 +12,55 @@
     export default {
         name: "IntervalChart",
         props: {
-            day: Object
+            day: Object,
+            chart_title: String
+        },
+        methods: {
+            saveFile: function() {
+                const data = JSON.stringify(this.day);
+                const blob = new Blob([data], {type: 'text/plain'});
+                const e = document.createEvent('MouseEvents'),
+                    a = document.createElement('a');
+                a.download = "test.json";
+                a.href = window.URL.createObjectURL(blob);
+                a.dataset.downloadurl = ['text/txt', a.download, a.href].join(':');
+                e.initEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                a.dispatchEvent(e);
+            }
         },
         data() {
             return {
                 chartOptionsBar: {
+                    title: {
+                        text: this.chart_title,
+                        x: 'center',
+                        textStyle: {
+                            fontSize: 18
+                        }
+                    },
+                    toolbox: {
+                        feature: {
+
+                            saveAsImage: {
+                                pixelRatio: 2,
+                                title: 'Obraz'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'shadow'
+                        }
+                    },
+                    legend: {
+                        data: ['mm/m^2']
+                    },
+                    dataZoom: [{
+                        type: 'inside'
+                    }, {
+                        type: 'slider'
+                    }],
                     xAxis: {
                         data: this.day.hours
                     },
@@ -23,42 +71,36 @@
                         {
                             type: 'bar',
                             data: this.day.values,
+                            markLine : {
+                                data : [
+                                    {type : 'average', name: 'Średnia'}
+                                ]
+                            },
                             label: {
-                                // You can choose from 'normal' (always visible )
-                                // and 'emphasis' (only visible on stack hover)
                                 emphasis: {
-                                    // Enable the label
                                     show: true,
-                                    // Position it on top of the stack
                                     position: 'top',
                                     formatter: (data) => {
                                         let alpha = data.value/Math.sqrt(15);
                                         if (alpha === 0)
-                                            return alpha + 'Brak opadów';
+                                            return 'Brak opadów';
                                         else if (alpha < 1)
-                                            return alpha + 'Zwykły deszcz';
+                                            return 'Zwykły deszcz';
                                         else if (alpha < 1.4)
-                                            return alpha + 'Silny deszcz';
+                                            return 'Silny deszcz';
                                         else if (alpha < 2)
-                                            return alpha + 'Deszcz ulewny I st';
+                                            return 'Deszcz ulewny I st';
                                         else if (alpha < 2.82)
-                                            return alpha + 'Deszcz ulewny II st';
+                                            return 'Deszcz ulewny II st';
                                         else if (alpha < 4)
-                                            return alpha + 'Deszcz ulewny III st';
+                                            return 'Deszcz ulewny III st';
                                         else if (alpha < 5.65)
-                                            return alpha + 'Deszcz ulewny IV st';
+                                            return 'Deszcz ulewny IV st';
                                     }
                                 }
                             }
                         }
                     ],
-                    title: {
-                        text: 'co 15 min',
-                        x: 'center',
-                        textStyle: {
-                            fontSize: 18
-                        }
-                    },
                     color: '#428bca'
                 }
             }

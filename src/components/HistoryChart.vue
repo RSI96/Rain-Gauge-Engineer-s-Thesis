@@ -1,15 +1,19 @@
 <template>
     <div class="col-sm-12 col-md-6 col-lg-6">
-        <b-button variant="success" v-on:click="saveFile()">saveData</b-button>
+        <div class="echarts">
         <chart :options="chartOptionsBar"></chart>
+        </div>
+        <b-button block variant="outline-primary" v-on:click="saveFile()">Zapisz dane</b-button>
+        <br>
     </div>
 </template>
 
 <script>
     export default {
-        name: "HistoryChart",
+        name: "IntervalChart",
         props: {
-            day: Object
+            day: Object,
+            chart_title: String
         },
         methods: {
             saveFile: function() {
@@ -27,6 +31,36 @@
         data() {
             return {
                 chartOptionsBar: {
+                    title: {
+                        text: this.chart_title + this.day.date,
+                        x: 'center',
+                        textStyle: {
+                            fontSize: 18
+                        }
+                    },
+                    toolbox: {
+                        feature: {
+
+                            saveAsImage: {
+                                pixelRatio: 2,
+                                title: 'Obraz'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'shadow'
+                        }
+                    },
+                    legend: {
+                        data: ['mm/m^2']
+                    },
+                    dataZoom: [{
+                        type: 'inside'
+                    }, {
+                        type: 'slider'
+                    }],
                     xAxis: {
                         data: this.day.hours
                     },
@@ -37,21 +71,36 @@
                         {
                             type: 'bar',
                             data: this.day.values,
+                            markLine : {
+                                data : [
+                                    {type : 'average', name: 'Średnia'}
+                                ]
+                            },
                             label: {
                                 emphasis: {
                                     show: true,
-                                    position: 'top'
+                                    position: 'top',
+                                    formatter: (data) => {
+                                        let alpha = data.value/Math.sqrt(15);
+                                        if (alpha === 0)
+                                            return 'Brak opadów';
+                                        else if (alpha < 1)
+                                            return 'Zwykły deszcz';
+                                        else if (alpha < 1.4)
+                                            return 'Silny deszcz';
+                                        else if (alpha < 2)
+                                            return 'Deszcz ulewny I st';
+                                        else if (alpha < 2.82)
+                                            return 'Deszcz ulewny II st';
+                                        else if (alpha < 4)
+                                            return 'Deszcz ulewny III st';
+                                        else if (alpha < 5.65)
+                                            return 'Deszcz ulewny IV st';
+                                    }
                                 }
                             }
                         }
                     ],
-                    title: {
-                        text: this.day.date + ' - Rain fell in mm/m^2',
-                        x: 'center',
-                        textStyle: {
-                            fontSize: 18
-                        }
-                    },
                     color: '#428bca'
                 }
             }
@@ -60,5 +109,7 @@
 </script>
 
 <style scoped>
-
+    .echarts {
+        border-right: 40px solid transparent
+    }
 </style>

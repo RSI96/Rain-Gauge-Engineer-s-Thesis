@@ -1,14 +1,12 @@
 <template>
     <div>
-    <div class="row">
-        <app-chart
+        <div class="row">
+            <app-chart
                 v-for="day in lastWeek"
                 :key="day.date"
                 :day="day"
-        ></app-chart>
-        <div v-for="day in lastWeek"
-             :key="day.date"
-             > {{ day.values }} {{ day.hours }}</div>
+                :chart_title="'Opady deszczu w mm/m^2 w dniu '"
+            ></app-chart>
         </div>
     </div>
 </template>
@@ -28,7 +26,7 @@
             }
         },
         created() {
-            axios.get("http://10.129.11.171:8080/lastWeekArrays")
+            axios.get("http://192.168.1.3:8080/lastWeekArrays")
                 .then(res => (this.lastWeek = res.data))
         }
     }

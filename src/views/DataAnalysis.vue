@@ -3,6 +3,7 @@
         <div class="container">
             <app-chart
                     :day="interval15min[0]"
+                    :chart_title="'interval_title'"
             ></app-chart>
         </div>
     </div>
@@ -23,7 +24,7 @@
             }
         },
         created() {
-            axios.get("http://10.129.11.171:8080/interval15min")
+            axios.get("http://192.168.1.3:8080/interval15min")
                 .then(res => (this.interval15min = res.data));
         }
     }
