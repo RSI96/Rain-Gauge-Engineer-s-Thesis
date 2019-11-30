@@ -11,10 +11,16 @@
                 W ciągu ostatniej godziny opad wyniósł {{ lastHour.suma }} mm/m^2
             </h4>
             <h4>
-               W ciągu ostatnich 10 minut spadło {{ last10Minutes.suma }} mm/m^2 co daje wspłóczynnik równy {{ alpha }}
+               W ciągu ostatnich 10 minut spadło {{ last10Minutes.suma }} mm/m^2 co przekłada się na:
             </h4>
-            <div v-if="alpha <= 1" >Zwykły deszcz</div>
-            <div v-else-if="alpha > 1" >Silny deszcz</div>
+            <h4 v-if="alpha = 0" >Brak opadów</h4>
+            <h4 v-if="alpha <= 1" >Zwykły deszcz</h4>
+            <h4 v-else-if="alpha < 1.4" >Silny deszcz</h4>
+            <h4 v-else-if="alpha < 2" >Deszcz ulewny I st</h4>
+            <h4 v-else-if="alpha < 2.82" >Deszcz ulewny II st</h4>
+            <h4 v-else-if="alpha < 4" >Deszcz ulewny III st</h4>
+            <h4 v-else-if="alpha < 5.65" >Deszcz ulewny IV st</h4>
+            <h4 v-else>Poza skalą</h4>
         </div>
     </div>
 </div>

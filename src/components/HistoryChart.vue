@@ -3,8 +3,10 @@
         <div class="echarts">
         <chart :options="chartOptionsBar"></chart>
         </div>
+        <div class="save_button">
         <b-button block variant="outline-primary" v-on:click="saveFile()">Zapisz dane</b-button>
         <br>
+        </div>
     </div>
 </template>
 
@@ -40,7 +42,10 @@
                     },
                     toolbox: {
                         feature: {
-
+                            magicType : {
+                                type: ['line', 'bar'],
+                                title: ['Liniowy', 'Słupkowy']
+                                },
                             saveAsImage: {
                                 pixelRatio: 2,
                                 title: 'Obraz'
@@ -81,7 +86,7 @@
                                     show: true,
                                     position: 'top',
                                     formatter: (data) => {
-                                        let alpha = data.value/Math.sqrt(15);
+                                        let alpha = data.value/Math.sqrt(60);
                                         if (alpha === 0)
                                             return 'Brak opadów';
                                         else if (alpha < 1)
@@ -111,5 +116,8 @@
 <style scoped>
     .echarts {
         border-right: 40px solid transparent
+    }
+    .save_button {
+        border-left: 25px solid transparent;
     }
 </style>

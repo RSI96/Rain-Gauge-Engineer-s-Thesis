@@ -1,10 +1,10 @@
 <template>
     <div>
-    <div class="echarts">
-        <chart :options="chartOptionsBar"></chart>
-    </div>
-    <b-button block variant="outline-primary" v-on:click="saveFile()">Zapisz dane</b-button>
-    <br>
+        <div class="echarts">
+            <chart :options="chartOptionsBar"></chart>
+        </div>
+        <b-button block variant="outline-primary" v-on:click="saveFile()">Zapisz dane</b-button>
+        <br>
     </div>
 </template>
 
@@ -33,7 +33,7 @@
             return {
                 chartOptionsBar: {
                     title: {
-                        text: this.chart_title,
+                        text: this.chart_title + this.day.date,
                         x: 'center',
                         textStyle: {
                             fontSize: 18
@@ -44,7 +44,7 @@
                             magicType: {
                                 type: ['line', 'bar'],
                                 title: ['Liniowy', 'Słupkowy']
-                                },
+                            },
                             dataView: {},
                             saveAsImage: {
                                 pixelRatio: 2,
