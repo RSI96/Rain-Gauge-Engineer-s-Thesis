@@ -45,7 +45,6 @@
                                 type: ['line', 'bar'],
                                 title: ['Liniowy', 'Słupkowy']
                             },
-                            dataView: {},
                             saveAsImage: {
                                 pixelRatio: 2,
                                 title: 'Obraz'
@@ -94,13 +93,27 @@
                                         else if (alpha < 1.4)
                                             return 'Silny deszcz';
                                         else if (alpha < 2)
-                                            return 'Deszcz ulewny I st';
+                                            return 'Deszcz ulewny - I st';
                                         else if (alpha < 2.82)
-                                            return 'Deszcz ulewny II st';
+                                            return 'Deszcz ulewny - II st';
                                         else if (alpha < 4)
-                                            return 'Deszcz ulewny III st';
+                                            return 'Deszcz ulewny - III st';
                                         else if (alpha < 5.65)
-                                            return 'Deszcz ulewny IV st';
+                                            return 'Deszcz ulewny - IV st';
+                                        else if (alpha < 8)
+                                            return 'Deszcz nawalny - V st';
+                                        else if (alpha < 11.3)
+                                            return 'Deszcz nawalny - VI st';
+                                        else if (alpha < 16)
+                                            return 'Deszcz nawalny - VII st';
+                                        else if (alpha < 22.61)
+                                            return 'Deszcz nawalny - VIII st';
+                                        else if (alpha < 32)
+                                            return 'Deszcz nawalny - IX st';
+                                        else if (alpha < 45.23)
+                                            return 'Deszcz nawalny - XI st';
+                                        else if (alpha < 64)
+                                            return 'Deszcz nawalny - XI st';
                                     }
                                 }
                             }
