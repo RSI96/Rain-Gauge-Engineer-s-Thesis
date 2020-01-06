@@ -8,10 +8,10 @@
         </div>
         <div class="panel-body">
             <h4>
-                W ciągu ostatniej godziny opad wyniósł {{ lastHour.suma }} mm/m^2
+                W ciągu ostatniej godziny opad wyniósł {{ lastHour.suma }} mm/m²
             </h4>
             <h4>
-               W ciągu ostatnich 10 minut spadło {{ last10Minutes.suma }} mm/m^2 co przekłada się na:
+               W ciągu ostatnich 10 opad wyniósł {{ last10Minutes.suma }} mm/m² co przekłada się na:
             </h4>
             <h4 v-if="alpha = 0" >Brak opadów</h4>
             <h4 v-if="alpha <= 1" >Zwykły deszcz</h4>
@@ -27,7 +27,7 @@
             <h4 v-else-if="alpha < 32" >Deszcz nawalny - IX st.</h4>
             <h4 v-else-if="alpha < 45.23" >Deszcz nawalny - X st.</h4>
             <h4 v-else-if="alpha < 64" >Deszcz nawalny - XI st.</h4>
-            <h4 v-else>Poza skalą</h4>
+            <h4 v-else>Poza skalą Chomicza</h4>
         </div>
     </div>
 </div>

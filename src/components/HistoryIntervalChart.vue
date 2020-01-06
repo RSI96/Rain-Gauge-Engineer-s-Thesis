@@ -114,6 +114,8 @@
                                             return 'Deszcz nawalny - XI st';
                                         else if (alpha < 64)
                                             return 'Deszcz nawalny - XI st';
+                                        else if (alpha >= 64)
+                                            return 'Poza skalą Chomicza';
                                     }
                                 }
                             }

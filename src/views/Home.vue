@@ -1,10 +1,13 @@
 <template>
   <div>
-    <h2>This is an autonomus rain gauge</h2>
+    <h3>Jest to strona przedstawiająca pomiary z autonomicznego deszczomierza</h3>
     <hr>
-    <h6>It will show you the level of rainfall</h6>
+    <h5>Został on wykonany w ramach projektu dyplomowego</h5>
     <hr>
-    <h6>Enjoy!</h6>
+    <h6>Autor:	Radosław Sikora</h6>
+    <h6>Kierunek studiów:	Automatyka i Robotyka</h6>
+    <h6>Opiekun projektu:	dr inż. Janusz Teneta</h6>
+
   </div>
 </template>
 

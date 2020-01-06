@@ -5,7 +5,7 @@
             <div class="col">
                 <app-chart
                         :day="lastDay[0]"
-                        :chart_title="'Opady deszczu w mm/m^2 w ciągu ostatnich 24 godzin'"
+                        :chart_title="'Opady deszczu w mm/m² w ciągu ostatnich 24 godzin'"
                 />
             </div>
             <div class="col">
@@ -19,14 +19,14 @@
         <div>
             <app-chart-int
                     :day="interval15min[0]"
-                    :chart_title="'Opady w mm/m*2 w ciągu ostatnich 24 godzin'"
+                    :chart_title="'Opady w mm/m² w ciągu ostatnich 24 godzin'"
                     :interval="15"
             />
         </div>
         <div>
             <app-chart-int
                     :day="interval5min[0]"
-                    :chart_title="'Opady w mm/m*2 w ciągu ostatnich 24 godzin'"
+                    :chart_title="'Opady w mm/m² w ciągu ostatnich 24 godzin'"
                     :interval="5"
             />
         </div>
@@ -58,15 +58,15 @@
         },
 
         created() {
-            axios.get("http://192.168.1.3:8080/lastHour")
+            axios.get("http://192.168.1.6:8080/lastHour")
                 .then(res => (this.lastHour = res.data[0]));
-            axios.get("http://192.168.1.3:8080/last10Minutes")
+            axios.get("http://192.168.1.6:8080/last10Minutes")
                 .then(res => (this.last10Minutes = res.data[0]));
-            axios.get("http://192.168.1.3:8080/lastDayArrays")
+            axios.get("http://192.168.1.6:8080/lastDayArrays")
                 .then(res => (this.lastDay = res.data));
-            axios.get("http://192.168.1.3:8080/interval15min")
+            axios.get("http://192.168.1.6:8080/interval15min")
                 .then(res => (this.interval15min = res.data));
-            axios.get("http://192.168.1.3:8080/interval5min")
+            axios.get("http://192.168.1.6:8080/interval5min")
                 .then(res => (this.interval5min = res.data));
         }
     }

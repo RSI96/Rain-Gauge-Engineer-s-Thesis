@@ -5,7 +5,7 @@
                     v-for="day in lastWeek"
                     :key="day.date"
                     :day="day"
-                    :chart_title="'Opady deszczu w mm/m^2 w dniu '"
+                    :chart_title="'Opady deszczu w mm/m² w dniu '"
             />
         </div>
     </div>
@@ -26,7 +26,7 @@
             }
         },
         created() {
-            axios.get("http://192.168.1.3:8080/lastWeekArrays")
+            axios.get("http://192.168.1.6:8080/lastWeekArrays")
                 .then(res => (this.lastWeek = res.data))
         }
     }
